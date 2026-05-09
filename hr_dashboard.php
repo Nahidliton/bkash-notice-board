@@ -20,7 +20,7 @@ if (isset($_POST['urgent_call'])) {
     if ($emp_result && $emp_result->num_rows > 0) {
         $emp_row = $emp_result->fetch_assoc();
         $emp_db_id = $emp_row['id'];
-        $urgent_title = "🚨 URGENT: Meeting with HR";
+        $urgent_title = "URGENT: Meeting with HR";
         $urgent_desc = "Your recent performance has been critically flagged (below 60 marks). You are required to schedule an urgent meeting with the HR department immediately.";
         $conn->query("INSERT INTO notices (title, description, type, employee_id, created_by) VALUES ('$urgent_title', '$urgent_desc', 'urgent', $emp_db_id, $hr_id)");
         $success = "✅ Urgent call notice sent successfully!";
@@ -257,7 +257,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
 
 <main class="main-content">
     <div class="top-bar">
-        <div class="page-title" id="pageTitle">📊 Dashboard Overview</div>
+        <div class="page-title" id="pageTitle">Dashboard Overview</div>
         <div class="top-right"><div><div class="digital-clock" id="digitalClock">00:00:00</div><div class="clock-date" id="clockDate"></div></div></div>
     </div>
 
@@ -296,7 +296,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
                                 <td><?php echo number_format($crit['csat'],1); ?></td><td><?php echo number_format($crit['tickets'],1); ?></td><td><?php echo number_format($crit['fcr'],1); ?></td>
                                 <td><?php echo number_format($crit['resolution_time'],1); ?></td><td><?php echo number_format($crit['response_time'],1); ?></td>
                                 <td><span class="badge badge-danger"><?php echo number_format($crit['total'],1); ?>/100</span></td><td><?php echo date('d/m/Y',strtotime($crit['date'])); ?></td>
-                                <td><form method="POST" onsubmit="return confirm('Send urgent call?');"><input type="hidden" name="employee_id" value="<?php echo $crit['emp_code']; ?>"><button type="submit" name="urgent_call" class="btn btn-danger btn-sm">📞 Urgent Call</button></form></td></tr>
+                                <td><form method="POST" onsubmit="return confirm('Send urgent call?');"><input type="hidden" name="employee_id" value="<?php echo $crit['emp_code']; ?>"><button type="submit" name="urgent_call" class="btn btn-danger btn-sm">Urgent Call</button></form></td></tr>
                         <?php endwhile; ?>
                     </tbody></table></div>
                 <?php else: ?><div class="empty-state"><i class="fas fa-check-circle" style="color:#10B981;font-size:60px;"></i><p style="font-size:18px;color:#10B981;">✅ No Critical Cases</p></div><?php endif; ?>
@@ -347,7 +347,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
         <!-- CONSULT EMPLOYEE -->
         <div id="section-consult" class="section">
             <div class="card"><div class="card-header"><h3><i class="fas fa-comments"></i> Schedule Consultation</h3></div>
-                <form method="POST"><div class="form-row"><div class="form-group"><label>Employee</label><select name="consult_emp" required><option value="">Choose...</option><?php if($all_employees): mysqli_data_seek($all_employees,0); while($emp=$all_employees->fetch_assoc()): ?><option value="<?php echo $emp['id']; ?>"><?php echo htmlspecialchars($emp['name'].' ('.$emp['employee_id'].')'); ?></option><?php endwhile; endif; ?></select></div><div class="form-group"><label>Date</label><input type="date" name="consult_date" required value="<?php echo date('Y-m-d'); ?>"></div></div><div class="form-group"><label>Notes</label><textarea name="consult_notes" rows="3"></textarea></div><button type="submit" name="schedule_consult" class="btn btn-primary">📅 Schedule</button></form>
+                <form method="POST"><div class="form-row"><div class="form-group"><label>Employee</label><select name="consult_emp" required><option value="">Choose...</option><?php if($all_employees): mysqli_data_seek($all_employees,0); while($emp=$all_employees->fetch_assoc()): ?><option value="<?php echo $emp['id']; ?>"><?php echo htmlspecialchars($emp['name'].' ('.$emp['employee_id'].')'); ?></option><?php endwhile; endif; ?></select></div><div class="form-group"><label>Date</label><input type="date" name="consult_date" required value="<?php echo date('Y-m-d'); ?>"></div></div><div class="form-group"><label>Notes</label><textarea name="consult_notes" rows="3"></textarea></div><button type="submit" name="schedule_consult" class="btn btn-primary"> Schedule</button></form>
             </div>
         </div>
 
@@ -363,7 +363,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
         <!-- PUBLISH NOTICE -->
         <div id="section-add-notice" class="section">
             <div class="card"><div class="card-header"><h3><i class="fas fa-plus-circle"></i> Publish New Notice</h3></div>
-                <form method="POST"><div class="form-group"><label>Title</label><input type="text" name="notice_title" required></div><div class="form-group"><label>Description</label><textarea name="notice_description" rows="4" required></textarea></div><div class="form-row"><div class="form-group"><label>Type</label><select name="notice_type" id="noticeType" required onchange="toggleNoticeTarget()"><option value="general">📢 General</option><option value="team">👥 Team</option><option value="individual">👤 Individual</option><option value="urgent">🚨 Urgent</option></select></div><div class="form-group" id="teamSelect" style="display:none;"><label>Team</label><select name="notice_team"><option value="">Choose...</option><?php $tf=$conn->query("SELECT * FROM teams"); if($tf): while($t=$tf->fetch_assoc()): ?><option value="<?php echo $t['id']; ?>"><?php echo $t['team_name']; ?></option><?php endwhile; endif; ?></select></div><div class="form-group" id="employeeSelect" style="display:none;"><label>Employee</label><select name="notice_employee"><option value="">Choose...</option><?php if($all_employees): mysqli_data_seek($all_employees,0); while($emp=$all_employees->fetch_assoc()): ?><option value="<?php echo $emp['id']; ?>"><?php echo $emp['name'].' ('.$emp['employee_id'].')'; ?></option><?php endwhile; endif; ?></select></div></div><button type="submit" name="add_notice" class="btn btn-primary">📢 Publish</button></form>
+                <form method="POST"><div class="form-group"><label>Title</label><input type="text" name="notice_title" required></div><div class="form-group"><label>Description</label><textarea name="notice_description" rows="4" required></textarea></div><div class="form-row"><div class="form-group"><label>Type</label><select name="notice_type" id="noticeType" required onchange="toggleNoticeTarget()"><option value="general"> General</option><option value="team">👥 Team</option><option value="individual">👤 Individual</option><option value="urgent">🚨 Urgent</option></select></div><div class="form-group" id="teamSelect" style="display:none;"><label>Team</label><select name="notice_team"><option value="">Choose...</option><?php $tf=$conn->query("SELECT * FROM teams"); if($tf): while($t=$tf->fetch_assoc()): ?><option value="<?php echo $t['id']; ?>"><?php echo $t['team_name']; ?></option><?php endwhile; endif; ?></select></div><div class="form-group" id="employeeSelect" style="display:none;"><label>Employee</label><select name="notice_employee"><option value="">Choose...</option><?php if($all_employees): mysqli_data_seek($all_employees,0); while($emp=$all_employees->fetch_assoc()): ?><option value="<?php echo $emp['id']; ?>"><?php echo $emp['name'].' ('.$emp['employee_id'].')'; ?></option><?php endwhile; endif; ?></select></div></div><button type="submit" name="add_notice" class="btn btn-primary">Publish</button></form>
             </div>
         </div>
 
