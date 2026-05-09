@@ -371,12 +371,12 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
         <div id="section-export-data" class="section">
             <div class="card"><div class="card-header"><h3><i class="fas fa-download"></i> Export Previous Data</h3></div>
                 <form method="GET" action="export_performance.php" target="_blank">
-                    <div class="form-group"><label>Export Type</label><select name="type" id="exportTypeHR" required onchange="toggleExportHR()"><option value="all">📊 All Employees Data</option><option value="specific">👤 Specific Employee</option></select></div>
+                    <div class="form-group"><label>Export Type</label><select name="type" id="exportTypeHR" required onchange="toggleExportHR()"><option value="all"> All Employees Data</option><option value="specific"> Specific Employee</option></select></div>
                     <div class="form-group" id="empSelectHR" style="display:none;"><label>Select Employee</label><select name="emp_id"><option value="">Choose...</option><?php $exphr=$conn->query("SELECT id,name,employee_id FROM employees WHERE role='employee' ORDER BY name"); if($exphr): while($e=$exphr->fetch_assoc()): ?><option value="<?php echo $e['id']; ?>"><?php echo htmlspecialchars($e['name'].' ('.$e['employee_id'].')'); ?></option><?php endwhile; endif; ?></select></div>
                     <div class="form-row"><div class="form-group"><label>Start Date</label><input type="date" name="start_date" required value="<?php echo date('Y-m-01'); ?>"></div><div class="form-group"><label>End Date</label><input type="date" name="end_date" required value="<?php echo date('Y-m-d'); ?>"></div></div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-file-excel"></i> 📥 Download Excel Report</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-file-excel"></i>  Download Excel Report</button>
                 </form>
-                <div class="info-box blue"><strong>📋 Instructions:</strong><ol><li>Select <strong>All Employees</strong> or a <strong>Specific Employee</strong></li><li>Choose the <strong>Start Date</strong> and <strong>End Date</strong></li><li>Click <strong>Download Excel Report</strong></li><li>The file will download as an .xls file</li></ol></div>
+                <div class="info-box blue"><strong> Instructions:</strong><ol><li>Select <strong>All Employees</strong> or a <strong>Specific Employee</strong></li><li>Choose the <strong>Start Date</strong> and <strong>End Date</strong></li><li>Click <strong>Download Excel Report</strong></li><li>The file will download as an .xls file</li></ol></div>
             </div>
         </div>
     </div>
@@ -392,7 +392,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
     function showSection(n){
         document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
         document.getElementById('section-'+n).classList.add('active');
-        document.getElementById('pageTitle').textContent={'dashboard':'📊 Dashboard Overview','critical':'🚨 Critical Performance','tabulation':'📊 Performance Tabulation','assign':'👤 Assign to Team','teams':'👥 Team List','consult':'💬 Consult Employee','notices':'📢 View Notices','add-notice':'📝 Publish Notice','export-data':'📥 Export Previous Data'}[n]||'Dashboard';
+        document.getElementById('pageTitle').textContent={'dashboard':' Dashboard Overview','critical':' Critical Performance','tabulation':' Performance Tabulation','assign':'👤 Assign to Team','teams':'👥 Team List','consult':' Consult Employee','notices':'View Notices','add-notice':' Publish Notice','export-data':' Export Previous Data'}[n]||'Dashboard';
         document.querySelectorAll('.sidebar-nav a').forEach(a=>a.classList.remove('active'));
         if(event&&event.target){const l=event.target.closest('a');if(l)l.classList.add('active');}
     }
