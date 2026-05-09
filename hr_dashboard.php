@@ -392,7 +392,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
     function showSection(n){
         document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
         document.getElementById('section-'+n).classList.add('active');
-        document.getElementById('pageTitle').textContent={'dashboard':' Dashboard Overview','critical':' Critical Performance','tabulation':' Performance Tabulation','assign':'👤 Assign to Team','teams':'👥 Team List','consult':' Consult Employee','notices':'View Notices','add-notice':' Publish Notice','export-data':' Export Previous Data'}[n]||'Dashboard';
+        document.getElementById('pageTitle').textContent={'dashboard':' Dashboard Overview','critical':' Critical Performance','tabulation':' Performance Tabulation','assign':' Assign to Team','teams':' Team List','consult':' Consult Employee','notices':'View Notices','add-notice':' Publish Notice','export-data':' Export Previous Data'}[n]||'Dashboard';
         document.querySelectorAll('.sidebar-nav a').forEach(a=>a.classList.remove('active'));
         if(event&&event.target){const l=event.target.closest('a');if(l)l.classList.add('active');}
     }
