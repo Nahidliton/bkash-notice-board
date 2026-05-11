@@ -278,7 +278,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
 
 <main class="main-content">
     <div class="top-bar">
-        <div class="page-title" id="pageTitle">📊 Dashboard Overview</div>
+        <div class="page-title" id="pageTitle">Dashboard Overview</div>
         <div style="text-align:right;"><div class="digital-clock" id="digitalClock">00:00:00</div><div class="clock-date" id="clockDate"></div></div>
     </div>
 
@@ -366,7 +366,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
                             <label>New Team Name</label>
                             <input type="text" name="team_name" required placeholder="Enter new team name (e.g., Team Gamma)">
                         </div>
-                        <button type="submit" name="create_team" class="btn btn-success" style="width:100%;">➕ Create Team</button>
+                        <button type="submit" name="create_team" class="btn btn-success" style="width:100%;">Create Team</button>
                     </form>
                     
                     <div style="margin-top:30px;padding-top:20px;border-top:2px solid var(--pink-light);">
@@ -394,7 +394,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
                                     <?php endwhile; ?>
                                 </select>
                             </div>
-                            <button type="submit" name="assign_team_lead" class="btn btn-primary" style="width:100%;">👔 Assign Team Lead</button>
+                            <button type="submit" name="assign_team_lead" class="btn btn-primary" style="width:100%;"> Assign Team Lead</button>
                         </form>
                     </div>
                 </div>
@@ -471,11 +471,11 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
                         <label>Team Name</label>
                         <input type="text" name="team_name" required placeholder="Enter unique team name (e.g., Team Gamma, Team Delta)">
                     </div>
-                    <button type="submit" name="create_team" class="btn btn-success" style="width:100%;">➕ Create New Team</button>
+                    <button type="submit" name="create_team" class="btn btn-success" style="width:100%;">Create New Team</button>
                 </form>
                 
                 <div style="margin-top:40px;padding-top:25px;border-top:2px solid var(--pink-light);">
-                    <h4 style="margin-bottom:20px;">👔 Assign Team Lead to Team</h4>
+                    <h4 style="margin-bottom:20px;">Assign Team Lead to Team</h4>
                     <form method="POST" class="form-row">
                         <div class="form-group">
                             <label>Select Team</label>
@@ -495,12 +495,12 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
                                 <?php endwhile; ?>
                             </select>
                         </div>
-                        <div style="grid-column:1/-1;"><button type="submit" name="assign_team_lead" class="btn btn-primary" style="width:100%;">👔 Assign as Team Lead</button></div>
+                        <div style="grid-column:1/-1;"><button type="submit" name="assign_team_lead" class="btn btn-primary" style="width:100%;">Assign as Team Lead</button></div>
                     </form>
                 </div>
                 
                 <div style="margin-top:25px;padding:15px;background:#F0F9FF;border-radius:10px;border-left:4px solid #3B82F6;">
-                    <strong>📋 Instructions:</strong>
+                    <strong>Instructions:</strong>
                     <ol style="margin:8px 0 0 20px;font-size:13px;color:#666;">
                         <li>First <strong>Create a New Team</strong> by entering a name above</li>
                         <li>Then <strong>Assign a Team Lead</strong> to the team</li>
@@ -531,7 +531,7 @@ $total_teams = $conn->query("SELECT COUNT(*) as total FROM teams")->fetch_assoc(
         document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
         document.getElementById('section-' + id).classList.add('active');
         if(btn) btn.classList.add('active');
-        const titles = {'dashboard':'📊 Dashboard Overview','critical':'🚨 Critical Performance','tabulation':'📊 Performance Tabulation','assign':'👤 Assign to Team','teams':'👥 Team List','consult':'💬 Consult Employee','notices':'📢 View Notices','add-notice':'📝 Publish Notice','create-team':'➕ Add New Team'};
+        const titles = {'dashboard':'Dashboard Overview','critical':'Critical Performance','tabulation':'Performance Tabulation','assign':'Assign to Team','teams':'Team List','consult':'Consult Employee','notices':'View Notices','add-notice':'Publish Notice','create-team':'Add New Team'};
         document.getElementById('pageTitle').textContent = titles[id] || 'Dashboard';
     }
     
