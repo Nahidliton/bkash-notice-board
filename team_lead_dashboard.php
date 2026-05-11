@@ -233,7 +233,9 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
 
 <aside class="sidebar">
     <div class="sidebar-header">
-        <div class="logo">bK</div>
+        <div class="logo">
+    <img src="logo/logo.jpg" alt="Logo" style="max-width: 80px; height: auto; border-radius: 8px;">
+    </div>
         <div class="team-name"><?php echo $team ? htmlspecialchars($team['team_name']) : 'No Team'; ?></div>
         <div class="title">Team Lead Panel</div>
     </div>
@@ -254,7 +256,7 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
 
 <main class="main-content">
     <div class="top-bar">
-        <div class="page-title" id="pageTitle">📊 Dashboard Overview</div>
+        <div class="page-title" id="pageTitle">Dashboard Overview</div>
         <div style="text-align:right;"><div class="digital-clock" id="digitalClock">00:00:00</div><div class="clock-date" id="clockDate"></div></div>
     </div>
 
@@ -320,7 +322,7 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
                             <div class="form-group"><label>Response</label><input type="number" name="response_time" min="0" max="20" step="0.01" required></div>
                         </div>
                         <div class="form-group"><label>Comments</label><textarea name="comments" rows="2"></textarea></div>
-                        <button type="submit" name="submit_eval" class="btn btn-primary" style="width:100%;">💾 Save Evaluation</button>
+                        <button type="submit" name="submit_eval" class="btn btn-primary" style="width:100%;">Save Evaluation</button>
                     </form>
                 </div>
                 <div class="card">
@@ -371,7 +373,7 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
                         <p style="font-size:12px;"><?php echo htmlspecialchars($c['notes']); ?></p>
                         <button class="btn btn-sm btn-primary" onclick='openConsultModal(<?php echo $c['id']; ?>,"<?php echo addslashes($c['notes']); ?>","<?php echo $c['status']; ?>")'>Update</button>
                     </div>
-                <?php endwhile; else: ?><p style="text-align:center;color:#10B981;padding:30px;">✅ No active consultations</p><?php endif; ?>
+                <?php endwhile; else: ?><p style="text-align:center;color:#10B981;padding:30px;">No active consultations</p><?php endif; ?>
             </div>
         </div>
 
@@ -403,10 +405,10 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
                 <div class="form-group"><label>Resolution</label><input type="number" id="edit_resolution_time" name="edit_resolution_time" step="0.01" required></div>
                 <div class="form-group"><label>Response</label><input type="number" id="edit_response_time" name="edit_response_time" step="0.01" required></div>
             </div>
-            <div class="form-group"><label>⚠️ Reason for Update (Required)</label><textarea name="update_reason" id="update_reason" rows="2" required placeholder="Explain why you are updating these marks..."></textarea></div>
+            <div class="form-group"><label>Reason for Update (Required)</label><textarea name="update_reason" id="update_reason" rows="2" required placeholder="Explain why you are updating these marks..."></textarea></div>
             <div class="form-group"><label>New Comments</label><textarea name="edit_comments" id="edit_comments" rows="2"></textarea></div>
             <div id="editTotal" style="text-align:center;font-size:22px;font-weight:700;color:#E91E63;margin:10px 0;">Total: 0/100</div>
-            <div style="display:flex;gap:10px;"><button type="button" class="btn" style="background:#999;color:white;flex:1;" onclick="closeModal('editModal')">Cancel</button><button type="submit" name="update_eval" class="btn btn-primary" style="flex:1;">💾 Update</button></div>
+            <div style="display:flex;gap:10px;"><button type="button" class="btn" style="background:#999;color:white;flex:1;" onclick="closeModal('editModal')">Cancel</button><button type="submit" name="update_eval" class="btn btn-primary" style="flex:1;">Update</button></div>
         </form>
     </div>
 </div>
@@ -414,7 +416,7 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
 <!-- CONSULT MODAL -->
 <div id="consultModal" class="modal-overlay">
     <div class="modal-box">
-        <h3>💬 Update Consultation</h3>
+        <h3>Update Consultation</h3>
         <form method="POST">
             <input type="hidden" name="consult_id" id="consult_id">
             <div class="form-group"><label>Notes</label><textarea name="consult_notes" id="consult_notes" rows="3"></textarea></div>
@@ -428,7 +430,7 @@ $pending_consult = $conn->query("SELECT COUNT(*) as total FROM consultations WHE
     function updateClock(){const n=new Date();document.getElementById('digitalClock').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');document.getElementById('clockDate').textContent=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][n.getDay()]+', '+n.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][n.getMonth()]+' '+n.getFullYear();}
     updateClock();setInterval(updateClock,1000);
     
-    function showSection(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.sidebar-nav a').forEach(a=>a.classList.remove('active'));document.getElementById('section-'+id).classList.add('active');if(btn)btn.classList.add('active');document.getElementById('pageTitle').textContent={'dashboard':'📊 Dashboard Overview','evaluate':'📝 Evaluate Team Member','performance':'📊 Performance History','consultations':'💬 Consultations','export-data':'📥 Export Previous Data'}[id];}
+    function showSection(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.sidebar-nav a').forEach(a=>a.classList.remove('active'));document.getElementById('section-'+id).classList.add('active');if(btn)btn.classList.add('active');document.getElementById('pageTitle').textContent={'dashboard':'Dashboard Overview','evaluate':' Evaluate Team Member','performance':'Performance History','consultations':'Consultations','export-data':' Export Previous Data'}[id];}
     
     function toggleExport(){document.getElementById('empExport').style.display=document.getElementById('exportType').value==='specific'?'block':'none';}
     
