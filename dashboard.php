@@ -77,7 +77,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
 </head>
 <body>
     <nav class="navbar">
-        <h2>👤 Employee Dashboard</h2>
+        <h2>Employee Dashboard</h2>
         <div>
             <span style="color: #666;">Welcome, <?php echo htmlspecialchars($name); ?> | <?php echo $_SESSION['full_id']; ?></span>
             <a href="logout.php" style="color: #E91E63; margin-left: 20px; text-decoration: none;" onclick="return confirm('Logout?')">Logout</a>
@@ -89,7 +89,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
         <?php if ($urgent_notices && $urgent_notices->num_rows > 0): ?>
             <?php while ($urgent = $urgent_notices->fetch_assoc()): ?>
                 <div class="urgent-alert">
-                    <h3>🚨 <?php echo htmlspecialchars($urgent['title']); ?></h3>
+                    <h3><?php echo htmlspecialchars($urgent['title']); ?></h3>
                     <p><?php echo htmlspecialchars($urgent['description']); ?></p>
                     <small>Date: <?php echo date('d M Y', strtotime($urgent['created_at'])); ?></small>
                 </div>
@@ -99,7 +99,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
         <div class="dashboard-grid">
             <!-- Notices -->
             <div class="card">
-                <h3>📢 All Notices</h3>
+                <h3>All Notices</h3>
                 
                 <?php
                 $hasNotices = false;
@@ -109,7 +109,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
                     $urgent_notices->data_seek(0);
                     while ($n = $urgent_notices->fetch_assoc()) {
                         $hasNotices = true;
-                        echo '<div class="notice-item notice-urgent"><strong>🚨 ' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
+                        echo '<div class="notice-item notice-urgent"><strong>' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
                     }
                 }
                 
@@ -118,7 +118,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
                     $individual_notices->data_seek(0);
                     while ($n = $individual_notices->fetch_assoc()) {
                         $hasNotices = true;
-                        echo '<div class="notice-item notice-individual"><strong>👤 ' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
+                        echo '<div class="notice-item notice-individual"><strong>' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
                     }
                 }
                 
@@ -136,7 +136,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
                     $general_notices->data_seek(0);
                     while ($n = $general_notices->fetch_assoc()) {
                         $hasNotices = true;
-                        echo '<div class="notice-item notice-general"><strong>📢 ' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
+                        echo '<div class="notice-item notice-general"><strong>' . htmlspecialchars($n['title']) . '</strong><p style="font-size:13px;color:#666;">' . htmlspecialchars($n['description']) . '</p><small>' . date('d M Y', strtotime($n['created_at'])) . '</small></div>';
                     }
                 }
                 
@@ -148,7 +148,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
             
             <!-- Performance -->
             <div class="card">
-                <h3>📊 Latest Performance</h3>
+                <h3>Latest Performance</h3>
                 <?php if ($latest_perf): 
                     $total = $latest_perf['total'];
                     $score_class = $total >= 80 ? 'score-green' : ($total >= 60 ? 'score-orange' : 'score-red');
@@ -163,7 +163,7 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
                     </table>
                     <div class="total-score <?php echo $score_class; ?>"><?php echo number_format($total, 1); ?>/100</div>
                     <?php if ($latest_perf['comments']): ?>
-                        <div style="background:#FCE4EC; padding:10px; border-radius:8px; margin-top:10px;">💬 <?php echo htmlspecialchars($latest_perf['comments']); ?></div>
+                        <div style="background:#FCE4EC; padding:10px; border-radius:8px; margin-top:10px;"> <?php echo htmlspecialchars($latest_perf['comments']); ?></div>
                     <?php endif; ?>
                     <p style="text-align:center; color:#999; font-size:12px; margin-top:10px;">Date: <?php echo date('d M Y', strtotime($latest_perf['date'])); ?></p>
                 <?php else: ?>
@@ -175,10 +175,10 @@ $consultations = $conn->query("SELECT * FROM consultations WHERE employee_id = "
         <!-- Consultations -->
         <?php if ($consultations && $consultations->num_rows > 0): ?>
             <div class="card" style="margin-top:20px;">
-                <h3>💬 Scheduled Consultations</h3>
+                <h3>Scheduled Consultations</h3>
                 <?php while ($c = $consultations->fetch_assoc()): ?>
                     <div class="consult-card">
-                        <strong>📅 <?php echo date('d M Y', strtotime($c['consultation_date'])); ?></strong>
+                        <strong><?php echo date('d M Y', strtotime($c['consultation_date'])); ?></strong>
                         <p style="font-size:13px; margin-top:5px;"><?php echo htmlspecialchars($c['notes']); ?></p>
                         <span style="font-size:11px; color:#999;">Status: <?php echo ucfirst($c['status']); ?></span>
                     </div>
